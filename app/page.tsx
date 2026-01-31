@@ -1,66 +1,142 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+// app/page.tsx
+'use client'
+
+import { Box, Typography, Container, Grid } from '@mui/material'
+import Link from 'next/link'
+import { 
+  BreakfastDining as BreakfastIcon,
+  LunchDining as SaladIcon,        // ← Замена для салатов
+  Kitchen as SoupIcon,             // ← Замена для супов
+  Cake as CakeIcon 
+} from '@mui/icons-material'
+
+// Данные категорий
+const categories = [
+  {
+    id: 'breakfast',
+    title: 'Завтраки',
+    description: 'Быстрые и полезные завтраки для хорошего начала дня',
+    icon: BreakfastIcon,
+    color: '#4CAF50',
+    image: '/images/categories/pexels-micheile-11583653.jpg'
+  },
+  {
+    id: 'salads',
+    title: 'Салаты',
+    description: 'Свежие и лёгкие салаты для здорового питания',
+    icon: SaladIcon,
+    color: '#2196F3',
+    image: '/images/categories/taylor-kiser-EvoIiaIVRzU-unsplash.jpg'
+  },
+  {
+    id: 'first-courses',
+    title: 'Первые блюда',
+    description: 'Супы и холодные закуски для любого времени года',
+    icon: SoupIcon,
+    color: '#FF9800',
+    image: '/images/categories/pexels-polina-tankilevitch-8601410.jpg'
+  },
+  {
+    id: 'desserts',
+    title: 'Десерты',
+    description: 'Полезные десерты без сахара и вредных ингредиентов',
+    icon: CakeIcon,
+    color: '#9C27B0',
+    image: '/images/categories/imad-786-cuFQNZXdQ8g-unsplash.jpg'
+  }
+]
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
+    <Container maxWidth="lg" sx={{ py: 6 }}>
+      {/* Заголовок */}
+      <Box sx={{ textAlign: 'center', mb: 6 }}>
+        <Typography 
+          variant="h2" 
+          sx={{ 
+            color: '#22c55e', 
+            fontWeight: 'bold',
+            mb: 2,
+            fontSize: { xs: '2rem', md: '3rem' }
+          }}
+        >
+          ПП Рецепты
+        </Typography>
+        <Typography variant="h6" color="text.secondary">
+          Вкусно. Полезно. Просто.
+        </Typography>
+      </Box>
+
+      {/* Карточки категорий */}
+      <Grid container spacing={5}>
+        {categories.map((category) => (
+          <Grid item xs={12} sm={6} md={6} key={category.id}>
+            <Link 
+              href={`/category/${category.id}`} 
+              style={{ textDecoration: 'none', color: 'inherit' }}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+              <Box
+                sx={{
+                  position: 'relative',
+                  height: 280,
+                  width: 400,
+                  borderRadius: 2,
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  transition: 'transform 0.3s, box-shadow 0.3s',
+                  '&:hover': {
+                    transform: 'scale(1.03)',
+                    boxShadow: 6,
+                  },
+                }}
+              >
+                {/* Фоновое изображение */}
+                <Box
+                  component="img"
+                  src={category.image}
+                  alt={category.title}
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    filter: 'brightness(0.7)',
+                  }}
+                />
+                
+                {/* Текст поверх изображения */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    p: 3,
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
+                    color: 'white',
+                  }}
+                >
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1 }}>
+                    
+                    <Typography variant="h4" fontWeight="bold">
+                      {category.title}
+                    </Typography>
+                  </Box>
+                  <Typography variant="body1">
+                    {category.description}
+                  </Typography>
+                </Box>
+              </Box>
+            </Link>
+          </Grid>
+        ))}
+      </Grid>
+
+      {/* Футер */}
+      <Box sx={{ textAlign: 'center', mt: 8, pt: 4, borderTop: '1px solid #eee' }}>
+        <Typography variant="body2" color="text.secondary">
+          © 2026 ПП Рецепты
+        </Typography>
+      </Box>
+    </Container>
+  )
 }
