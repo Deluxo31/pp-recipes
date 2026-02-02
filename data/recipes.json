@@ -25,7 +25,7 @@
       "Выложить творог, свернуть и подать"
     ],
     "tags": ["завтрак", "пп", "быстро", "без сахара"],
-    "image": "https://via.placeholder.com/345x180/4CAF50/FFFFFF?text=Овсяноблин",
+    "image": "/images/recipes/breakfast/Oatmeal pancake with cottage cheese.jpg",
     "rating": 4.9,
     "reviews": 42
   },
@@ -58,7 +58,7 @@
       "Посыпать рубленой петрушкой"
     ],
     "tags": ["салат", "летний", "без мяса", "быстро"],
-    "image": "https://via.placeholder.com/345x180/2196F3/FFFFFF?text=Греческий+салат",
+    "image": "/images/recipes/salads/Greek salad.jpeg",
     "rating": 4.8,
     "reviews": 15
   },
@@ -169,7 +169,7 @@
       "Остудить перед подачей"
     ],
     "tags": ["десерт", "пп", "без сахара", "выпечка"],
-    "image": "https://via.placeholder.com/345x180/9C27B0/FFFFFF?text=Запеканка",
+    "image": "/images/recipes/desserts/Sugar-free cottage cheese casserole.jpg",
     "rating": 4.6,
     "reviews": 27
   },
@@ -204,7 +204,7 @@
       "Посыпать пармезаном и гренками"
     ],
     "tags": ["салат", "пп", "обед", "с мясом"],
-    "image": "https://via.placeholder.com/345x180/FF5722/FFFFFF?text=Цезарь+ПП",
+    "image": "/images/recipes/salads/Caesar salad.webp",
     "rating": 4.7,
     "reviews": 31
   },
@@ -236,7 +236,7 @@
       "Подать с нарезанной клубникой"
     ],
     "tags": ["завтрак", "быстро", "пп", "без сахара"],
-    "image": "https://via.placeholder.com/345x180/3F51B5/FFFFFF?text=Французский+тост",
+    "image": "/images/recipes/breakfast/French toast PP.jpeg",
     "rating": 4.8,
     "reviews": 19
   },
@@ -269,7 +269,7 @@
       "Украсить ягодами перед подачей"
     ],
     "tags": ["десерт", "пп", "без выпечки", "веганский"],
-    "image": "https://via.placeholder.com/345x180/795548/FFFFFF?text=Шоколадный+мусс",
+    "image": "/images/recipes/desserts/Sugar-free chocolate mousse.jpeg",
     "rating": 4.5,
     "reviews": 14
   }

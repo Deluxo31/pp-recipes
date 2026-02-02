@@ -18,7 +18,7 @@ const categories = [
     description: 'Быстрые и полезные завтраки для хорошего начала дня',
     icon: BreakfastIcon,
     color: '#4CAF50',
-    image: '/images/categories/pexels-micheile-11583653.jpg'
+    image: '/images/categories/pexels-micheile-11583653.webp'
   },
   {
     id: 'salads',
@@ -26,7 +26,7 @@ const categories = [
     description: 'Свежие и лёгкие салаты для здорового питания',
     icon: SaladIcon,
     color: '#2196F3',
-    image: '/images/categories/taylor-kiser-EvoIiaIVRzU-unsplash.jpg'
+    image: '/images/categories/taylor-kiser-EvoIiaIVRzU-unsplash.webp'
   },
   {
     id: 'first-courses',
@@ -34,7 +34,7 @@ const categories = [
     description: 'Супы и холодные закуски для любого времени года',
     icon: SoupIcon,
     color: '#FF9800',
-    image: '/images/categories/pexels-polina-tankilevitch-8601410.jpg'
+    image: '/images/categories/pexels-polina-tankilevitch-8601410.webp'
   },
   {
     id: 'desserts',
@@ -42,7 +42,7 @@ const categories = [
     description: 'Полезные десерты без сахара и вредных ингредиентов',
     icon: CakeIcon,
     color: '#9C27B0',
-    image: '/images/categories/imad-786-cuFQNZXdQ8g-unsplash.jpg'
+    image: '/images/categories/imad-786-cuFQNZXdQ8g-unsplash.webp'
   }
 ]
 
@@ -68,9 +68,9 @@ export default function Home() {
       </Box>
 
       {/* Карточки категорий */}
-      <Grid container spacing={5}>
+      <Grid container spacing={5} justifyContent="center" >
         {categories.map((category) => (
-          <Grid item xs={12} sm={6} md={6} key={category.id}>
+          <Grid sizes={{ xs: 12, sm: 6, md: 6, lg: 3 }} key={category.id}>
             <Link 
               href={`/category/${category.id}`} 
               style={{ textDecoration: 'none', color: 'inherit' }}
@@ -79,7 +79,7 @@ export default function Home() {
                 sx={{
                   position: 'relative',
                   height: 280,
-                  width: 400,
+                  width: 360,
                   borderRadius: 2,
                   overflow: 'hidden',
                   cursor: 'pointer',
@@ -99,7 +99,7 @@ export default function Home() {
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    filter: 'brightness(0.7)',
+                    filter: 'brightness(0.8)',
                   }}
                 />
                 
