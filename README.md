@@ -1,36 +1,159 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+markdown
+# 🥗 ПП Рецепты — готовим вкусно и без вреда для фигуры
 
-## Getting Started
+Всем привет! Это мой pet-проект — сайт с рецептами правильного питания. Я сам постоянно ищу что-то новенькое и полезное, но чтобы было вкусно и готовилось без заморочек. Решил собрать всё в одном месте и заодно прокачаться в Next.js.
 
-First, run the development server:
+**Девиз проекта:** Вкусно. Полезно. Просто. Ну и немного с душой.
 
-```bash
+---
+
+## Что умеет этот сайт?
+
+- **🔍 Искать рецепты** — поиск работает мгновенно, прямо во время набора. Я замутил глобальный контекст, так что результаты появляются на отдельной странице. Если удалить запрос — вас кидает обратно, откуда пришли. Удобно.
+- **📱 Открываться на любом устройстве** — я проверял и на телефоне, и на планшете, и на десктопе. Всё адаптируется.
+- **🧭 Быстро переходить по категориям** — Завтраки, Салаты, Первые блюда, Десерты. В планах добавить ещё.
+- **🔙 Не терять навигацию** — после поиска можно вернуться назад без танцев с бубном.
+
+---
+
+## Что внутри?
+
+Стек я подбирал современный, но не ради хайпа, а потому что реально удобно:
+
+- **Next.js 16 (App Router)** — крутая штука, особенно понравились серверные компоненты и роутинг из коробки.
+- **TypeScript** — без него уже как без рук. Сам себе документация.
+- **Material UI** — быстрые и красивые компоненты, почти не приходится возиться с CSS.
+- **CSS Modules** — для кастомных стилей, где надо было что-то точёное.
+- **Context API** — пригодился для глобального состояния поиска. Не хотел тащить лишние библиотеки.
+
+---
+
+## Как всё устроено (структура проекта)
+
+Я старался делать максимально понятно, чтобы через месяц самому не запутаться:
+pp-recipes/
+├── app/
+│ ├── layout.tsx # Тут обёртка с хедером и провайдерами
+│ ├── page.tsx # Главная — категории
+│ ├── search/
+│ │ └── page.tsx # Страница результатов поиска
+│ ├── recipe/
+│ │ └── [id]/
+│ │ └── page.tsx # Страница конкретного рецепта
+│ └── category/
+│ └── [id]/
+│ └── page.tsx # Рецепты по категории
+├── components/
+│ ├── Header.tsx # Шапка с поиском
+│ ├── RecipeCard.tsx # Карточка рецепта
+│ └── SearchBar/ # Строка поиска (стилизованная)
+├── contexts/
+│ └── SearchContext.tsx # Логика поиска и переходов
+├── data/
+│ └── recipes.json # Все рецепты в одном JSON
+├── types/
+│ └── types.ts # Типы для TypeScript
+└── public/
+└── images/ # Картинки для рецептов
+
+text
+
+---
+
+## Запустить локально? Легко!
+
+1. **Клонируем репозиторий**  
+   ```bash
+   git clone https://github.com/Deluxo31/pp-recipes.git
+   cd pp-recipes
+Ставим зависимости
+
+bash
+npm install
+Запускаем дев-сервер
+
+bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Открываем браузер и идём на http://localhost:3000
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Всё, можно смотреть и тестировать.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Как работает поиск (немного подробностей)
+Когда вы начинаете печатать в поисковой строке (она в хедере), срабатывает SearchContext. Он фильтрует массив рецептов по названию и автоматически кидает вас на страницу /search. Там показываются результаты.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Если сотрёте запрос — вернётесь туда, откуда пришли. Эту логику я сделал через роутер Next.js, и она работает без перезагрузки страницы. Приятно, чёрт возьми.
 
-## Learn More
+Хотите добавить свой рецепт?
+Ок, открываете файл data/recipes.json и добавляете новый объект по такому шаблону:
 
-To learn more about Next.js, take a look at the following resources:
+json
+{
+  "id": 9,
+  "title": "Салат с киноа и авокадо",
+  "category": "salads",
+  "subcategory": "овощные",
+  "description": "Лёгкий и сытный салат за 10 минут",
+  "difficulty": "легко",
+  "prepTime": "10 мин",
+  "servings": 2,
+  "calories": 320,
+  "protein": 12,
+  "carbs": 35,
+  "fat": 18,
+  "ingredients": ["киноа", "авокадо", "помидоры черри", "листья салата"],
+  "steps": ["Отварить киноа", "Нарезать овощи", "Смешать и заправить"],
+  "tags": ["веган", "быстро"],
+  "image": "/images/recipes/salad.jpg",
+  "rating": 4.8,
+  "reviews": 24
+}
+Не забудьте положить картинку в public/images/recipes/.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Деплой на Vercel — дело пары кликов
+Я заливал через веб-интерфейс:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Заходим на vercel.com
 
-## Deploy on Vercel
+Жмём Add New Project
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Импортируем этот репозиторий
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Нажимаем Deploy
+
+Готово, сайт уже в сети.
+
+Можно и через командную строку, если привыкли:
+
+bash
+npm i -g vercel
+vercel login
+vercel
+Что дальше? (мои планы)
+Проект живой, буду допиливать потихоньку:
+
+Поиск не только по названию, но и по ингредиентам и тегам
+
+Фильтры по калориям и БЖУ (для тех, кто на строгом учёте)
+
+Избранное (чтобы сохранять любимые рецепты)
+
+Вход через Google (чтобы добавлять рецепты в личный кабинет)
+
+Простая админка для добавления рецептов без кодинга
+
+Комментарии и оценки от пользователей
+
+Если есть идеи — велком в issues или PR.
+
+Об авторе
+Я Deluxo31, фронтенд-разработчик из Минска. Обожаю готовить (и есть), а ещё экспериментировать с технологиями. Этот проект собрал, чтобы объединить два хобби. Буду рад, если кому-то пригодится.
+
+GitHub: @Deluxo31
+
+Лицензия
+Проект под MIT, так что берите, копируйте, дорабатывайте, если захотите. Только упомяните автора, ок?
+
+<div align="center">
+Сделано с любовью и желанием есть вкусную и полезную еду
+
+</div> ```
