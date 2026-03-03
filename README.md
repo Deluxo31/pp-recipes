@@ -31,34 +31,29 @@ markdown
 ## Как всё устроено (структура проекта)
 
 Я старался делать максимально понятно, чтобы через месяц самому не запутаться:
-pp-recipes/
-├── app/
-│ ├── layout.tsx # Тут обёртка с хедером и провайдерами
-│ ├── page.tsx # Главная — категории
-│ ├── search/
-│ │ └── page.tsx # Страница результатов поиска
-│ ├── recipe/
-│ │ └── [id]/
-│ │ └── page.tsx # Страница конкретного рецепта
-│ └── category/
-│ └── [id]/
-│ └── page.tsx # Рецепты по категории
-├── components/
-│ ├── Header.tsx # Шапка с поиском
-│ ├── RecipeCard.tsx # Карточка рецепта
-│ └── SearchBar/ # Строка поиска (стилизованная)
-├── contexts/
-│ └── SearchContext.tsx # Логика поиска и переходов
-├── data/
-│ └── recipes.json # Все рецепты в одном JSON
-├── types/
-│ └── types.ts # Типы для TypeScript
-└── public/
-└── images/ # Картинки для рецептов
-
-text
-
----
+- app/
+  - layout.tsx # Тут обёртка с хедером и провайдерами
+  - page.tsx # Главная — категории
+  - search/
+    - page.tsx # Страница результатов поиска
+  - recipe/
+    - [id]/
+      - page.tsx # Страница конкретного рецепта
+  - category/
+    - [id]/
+      - page.tsx # Рецепты по категории
+- components/
+  - Header.tsx # Шапка с поиском
+  - RecipeCard.tsx # Карточка рецепта
+  - SearchBar/ # Строка поиска (стилизованная)
+- contexts/
+  - SearchContext.tsx # Логика поиска и переходов
+- data/
+  - recipes.json # Все рецепты в одном JSON
+- types/
+  - types.ts # Типы для TypeScript
+- public/
+  - images/ # Картинки для рецептов
 
 ## Запустить локально? Легко!
 
