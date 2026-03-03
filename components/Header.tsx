@@ -14,9 +14,13 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import RestaurantIcon from "@mui/icons-material/Restaurant"; // ← иконка ресторана/еды
 import { useRouter } from "next/navigation";
+import { SearchBar } from "./SearchBar";
+import resipesDstsa from '@/data/recipes.json'
+import { useSearch } from '@/contexts/SearchContext';
 
 function ResponsiveAppBar() {
   const router = useRouter(); // ← Хук для навигации
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -24,6 +28,13 @@ function ResponsiveAppBar() {
     null,
   );
 
+  //Поиск SearchBar
+  const { setQuery } = useSearch(); // ← Берём из контекста
+
+  const handleSearch = (query: string) => {
+    setQuery(query); // ← Просто обновляем контекст
+  };
+ 
   //Массив бургер меню
   const pages = [
     { label: "Рецепты", path: "/recipes" },
@@ -192,6 +203,7 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
+          <SearchBar/>
         </Toolbar>
       </Container>
     </AppBar>

@@ -12,7 +12,7 @@ interface Recipe {
   protein: number
   carbs: number
   fat: number
-  time: string
+  time?: string
   image?: string
   description?: string
   ingredients?: string[]
@@ -64,7 +64,7 @@ export default function RecipePage({ params }: { params: Promise<{ id: string }>
           image={recipe.image || 'https://via.placeholder.com/800x400?text=Рецепт'}
           alt={recipe.title}
         />
-        <CardContent>
+        <CardContent sx={{padding: '31px'}}>
           <Box sx={{ display: 'flex', gap: 3, mb: 2 }}>
             <Typography variant="body1">🕐 {recipe.time}</Typography>
             <Typography variant="body1">🔥 {recipe.calories} ккал</Typography>

@@ -3,23 +3,16 @@
 import { Card, CardContent, CardMedia, Typography, Box, Chip } from '@mui/material'
 import Link from 'next/link'
 import StarIcon from '@mui/icons-material/Star'
+import { Recipe } from '@/types/types';
 
-interface Recipe {
-  id: number
-  title: string
-  category: string
-  difficulty: string
-  prepTime: string
-  calories: number
-  protein: number
-  carbs: number
-  fat: number
-  image: string
-  rating: number
-  tags?: string[]  // ← опциональное поле
+interface RecipeCardProps {
+  recipe: Recipe;
 }
 
 export default function RecipeCard({ recipe }: { recipe: Recipe }) {
+  if (!recipe || !recipe.id) {
+    return null;
+  }
   // Цвета для сложности
   const difficultyColors: Record<string, string> = {
     легко: 'success',
